@@ -9,7 +9,13 @@ fi
 
 source lib/lib.sh
 
-rm lib/var/tmp/pl_connect_current_ip.txt
+if [ -f lib/var/tmp/pl_connect_current_ip.txt ]
+then
+	rm lib/var/tmp/pl_connect_current_ip.txt
+fi
+
+# give the client time to start
+sleep 10
 
 while true
 do

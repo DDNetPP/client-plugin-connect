@@ -9,9 +9,11 @@ fi
 
 source lib/lib.sh
 
+rm lib/var/tmp/pl_connect_current_ip.txt
+
 while true
 do
-	./lib/plugins/client-plugin-connect/find_full_server.sh
+	./lib/plugins/client-plugin-connect/lib/find_full_server.sh
 	sleep 5m
 done
 

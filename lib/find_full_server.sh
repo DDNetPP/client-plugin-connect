@@ -4,13 +4,13 @@ IFS=$'\n\t'
 
 http_master_url=https://master1.ddnet.org/ddnet/15/servers.json
 
-mapname=BlmapChill
-set +u
-if [ "$CFG_PL_CONNECT_MAP" != "" ]
+mapname="$CFG_PL_CONNECT_MAP"
+cmd_prefix="$CFG_PL_CONNECT_CMD_PREFIX"
+cmd_prefix="$(echo "$cmd_prefix" | sed 's/;*$//')"
+if [ "$cmd_prefix" != "" ]
 then
-	mapname="$CFG_PL_CONNECT_MAP"
+	cmd_prefix+=';'
 fi
-set -u
 
 function get_fullest_server_ip() {
 	local mapname="$1"
@@ -33,7 +33,7 @@ if [ "$server_ip" != "null" ] && [ "$server_ip" != "" ] && [ "$current_ip" != "$
 then
 	echo "[client-plugin-connect] map=$mapname connecting to '$server_ip' ..."
 
-	./lib/fifo.sh "connect $server_ip"
+	./lib/fifo.sh "${cmd_prefix}connect $server_ip"
 
 	mkdir -p lib/var/tmp
 	echo "$server_ip" > lib/var/tmp/pl_connect_current_ip.txt

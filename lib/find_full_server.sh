@@ -20,8 +20,6 @@ function get_fullest_server_ip() {
 }
 
 server_ip="$(get_fullest_server_ip "$mapname")"
-echo "$mapname"
-echo "$server_ip"
 
 current_ip=
 if [ -f lib/var/tmp/pl_connect_current_ip.txt ]
@@ -31,7 +29,8 @@ fi
 
 if [ "$server_ip" != "null" ] && [ "$server_ip" != "" ] && [ "$current_ip" != "$server_ip" ]
 then
-	echo "[client-plugin-connect] map=$mapname connecting to '$server_ip' ..."
+	ts="$(date '+%F %H:%M')"
+	echo "[$ts][client-plugin-connect] map=$mapname connecting to '$server_ip' ..."
 
 	./lib/fifo.sh "${cmd_prefix}connect $server_ip"
 

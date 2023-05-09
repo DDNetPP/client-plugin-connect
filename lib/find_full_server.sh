@@ -14,7 +14,7 @@ fi
 
 function get_fullest_server_ip() {
 	local mapname="$1"
-	curl "$http_master_url" |
+	curl --silent "$http_master_url" |
 		jq -r "[.servers[] | select(.info.map.name == \"$mapname\")] | sort_by(.info.clients | length) | .[-1].addresses[0]" |
 		cut -d'/' -f3
 }

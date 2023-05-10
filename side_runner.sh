@@ -13,7 +13,6 @@ if [ -f lib/var/tmp/pl_connect_current_ip.txt ]
 then
 	rm lib/var/tmp/pl_connect_current_ip.txt
 fi
-./lib/plugins/client-plugin-connect/lib/find_full_server.sh # just for testing todo remove
 
 echo "*** client-plugin-connect ***"
 echo "starting side runner with the following config:"

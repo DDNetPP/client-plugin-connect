@@ -13,4 +13,6 @@ And then in your ``server.cnf`` put the map you want to search for
 
 
         pl_connect_map=BlmapChill
-
+        pl_connect_server_name=
+        pl_connect_switch_if_less_than=16
+        pl_connect_cmd_prefix=echo hello from connect

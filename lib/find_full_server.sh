@@ -10,7 +10,7 @@ http_cache=lib/var/tmp/pl_connect_servers.json
 mapname="$CFG_PL_CONNECT_MAP"
 server_name="$CFG_PL_CONNECT_SERVER_NAME"
 cmd_prefix="$CFG_PL_CONNECT_CMD_PREFIX"
-cmd_prefix="$(echo "$cmd_prefix" | sed 's/;*$//')"
+cmd_prefix="${cmd_prefix%%+(;)}"
 if [ "$cmd_prefix" != "" ]
 then
 	cmd_prefix+=';'
@@ -117,7 +117,9 @@ then
 	pl_log "[-] leave - players=$current_player_count ip=$current_ip"
 	pl_log "[+] join  - players=$destination_player_count ip=$server_ip name=$destination_name"
 
+	set -x
 	./lib/fifo.sh "${cmd_prefix}connect $server_ip"
+	set +x
 
 	echo "$server_ip" > lib/var/tmp/pl_connect_current_ip.txt
 fi

@@ -11,7 +11,7 @@ and auto connect to it every 5 minutes if not connected already.
 
 And then in your ``server.cnf`` put the map you want to search for
 
-
+        pl_connect=on
         pl_connect_map=BlmapChill
         pl_connect_server_name=
         pl_connect_switch_if_less_than=16

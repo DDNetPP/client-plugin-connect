@@ -83,6 +83,12 @@ function pick_desired_ip() {
 	echo null
 }
 
+if ! is_cfg CFG_PL_CONNECT
+then
+	pl_log "plugin is off. not starting .."
+	exit 0
+fi
+
 # refresh cache keep it in the beginning
 dl_servers_json
 

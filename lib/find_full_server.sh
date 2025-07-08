@@ -2,6 +2,15 @@
 # set -euo pipefail
 # IFS=$'\n\t'
 
+if [ ! -f lib/lib.sh ]
+then
+    echo "Error: lib/lib.sh not found!"
+    echo "make sure you are in the root of the server repo"
+    exit 1
+fi
+
+source lib/lib.sh
+
 mkdir -p lib/var/tmp
 
 http_master_url=https://master1.ddnet.org/ddnet/15/servers.json
